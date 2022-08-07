@@ -25,7 +25,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     }
     roundScore+=diceNumber;
     console.log(diceNumber);
-    setTimeout(() => {
+
     if(diceNumber !== 1){
       document.getElementById("score-"+activePlayer).textContent = roundScore;
   
@@ -43,7 +43,6 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
       }
   
     };
-  }, 1500);
 });
 document.querySelector(".btn-hold").addEventListener("click", function(){
 
