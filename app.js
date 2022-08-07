@@ -9,7 +9,7 @@ var player_2 = document.getElementById("score-1").textContent = 0;
 var currPlayer_1 = document.getElementById("current-0").textContent = 0;
 var currPlayer_2 = document.getElementById("current-1").textContent = 0;
 
-document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
+// document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
 
 var dice = document.getElementById('dice1');
 
@@ -34,19 +34,16 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
       roundScore = 0;
       document.getElementById("score-"+activePlayer).textContent = roundScore;
   
-      if(activePlayer === 1 ){
-        activePlayer = 0;
-        document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
-      }else{
-        activePlayer = 1;
-        document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
-      }
+      switchPlayer();
   
     };
   }, 1500);
 });
 document.querySelector(".btn-hold").addEventListener("click", function(){
 
+  if(scores[activePlayer] >= 20){
+    document.getElementById("name-"+activePlayer).textContent = "Winner";
+  }
   document.querySelector(".player-"+activePlayer+"-panel").classList.remove('active');
 
     scores[activePlayer]+=roundScore;
@@ -54,14 +51,7 @@ document.querySelector(".btn-hold").addEventListener("click", function(){
     roundScore = 0;
     document.getElementById("score-"+activePlayer).textContent = roundScore;
     
-    if(activePlayer===1){
-      activePlayer=0;
-      document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
-    
-    }else{ 
-      activePlayer=1;
-      document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
-    }
+    switchPlayer();
   });
   
   document.querySelector(".btn-new").addEventListener("click", function(){
@@ -74,6 +64,15 @@ document.querySelector(".btn-hold").addEventListener("click", function(){
     document.getElementById("score-1").textContent = 0;
     document.getElementById("current-0").textContent = 0;
     document.getElementById("current-1").textContent = 0;
-    diceDom.style.display = "none";
     document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
   });
+
+  function switchPlayer(){
+    if(activePlayer === 1 ){
+      activePlayer = 0;
+      document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
+    }else{
+      activePlayer = 1;
+      document.querySelector(".player-"+activePlayer+"-panel").classList.add('active');
+    }
+  }
